@@ -55,6 +55,7 @@ class ImageOptim
       # Resolve all bins of all workers, if there are errors and
       # skip_missing_workers of image_optim is true - show warnings, otherwise
       # fail with one joint exception
+      # Omit warnings about missing bins if skip_missing_workers is :silent
       def create_all(image_optim, &options_proc)
         workers = init_all(image_optim, &options_proc)
 
@@ -67,7 +68,9 @@ class ImageOptim
         unless errors.empty?
           messages = errors.map(&:to_s).uniq
           if image_optim.skip_missing_workers
-            messages.each{ |message| warn message }
+            unless image_optim.skip_missing_workers == :silent
+              messages.each{ |message| warn message }
+            end
           else
             joint_message = ['Bin resolving errors:', *messages].join("\n")
             fail BinResolver::Error, joint_message

@@ -33,6 +33,7 @@ class ImageOptim
   attr_reader :pack
 
   # Skip workers with missing or problematic binaries
+  # Use :silent value to omit warnings
   attr_reader :skip_missing_workers
 
   # Allow lossy workers and optimizations

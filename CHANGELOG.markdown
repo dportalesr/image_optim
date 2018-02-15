@@ -3,6 +3,7 @@
 ## unreleased
 
 * Show full bin search path in verbose output [@toy](https://github.com/toy)
+* Add :silent value to skip_missing_workers option to omit missing binaries warnings [@dportalesr](https://github.com/dportalesr)
 
 ## v0.26.1 (2017-12-14)
 
